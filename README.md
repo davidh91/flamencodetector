@@ -3,7 +3,7 @@
 Upload a flamenco recording and the model tells you its **palo**. The 'palo' is the flamenco
 form of the song, characterized by a specific compás (meter),tonality, melody and/or lyrics. It also shows how sure it is of its prediction.
 
-**Demo:** _(Hugging Face Space link)_ · **Model:** fine-tuned
+**Demo:** [Flamenco Palo Detector on Hugging Face Spaces](https://huggingface.co/spaces/huggingddddd/flamenco-palo-detector) · **Model:** fine-tuned
 [MERT-v1-95M](https://huggingface.co/m-a-p/MERT-v1-95M)
 
 
@@ -173,3 +173,8 @@ app.py          Gradio app: palo for the whole track + a per-window timeline
 tests/          tests for the title parser
 tools/windows/  helpers to repair file names on an exFAT drive
 ```
+
+## License
+
+[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) (non-commercial), for the code
+and the model. The model is based on MERT-v1-95M, which has the same license.
