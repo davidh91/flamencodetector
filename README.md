@@ -1,29 +1,26 @@
 # Flamenco palo detector
 
-Upload a flamenco recording and the model tells you its **palo** (the flamenco
-form). It also shows how sure it is, window by window, over the whole track.
+Upload a flamenco recording and the model tells you its **palo**. The 'palo' is the flamenco
+form of the song, characterized by a specific compás (meter),tonality, melody and/or lyrics. It also shows how sure it is of its prediction.
 
 **Demo:** _(Hugging Face Space link)_ · **Model:** fine-tuned
 [MERT-v1-95M](https://huggingface.co/m-a-p/MERT-v1-95M)
 
-I built this project to learn audio fine-tuning with Hugging Face end to end:
-data labelling, a leak-free split, training, evaluation, and a web app.
-I know flamenco well, so I could check the labels and the model's mistakes by ear.
 
 _(screenshot of the app: docs/app.png)_
 
 ## The task
 
-Six palos, which differ in rhythm (compás), tonality, and character:
+Six palos, which differ in compás, tonality, and character:
 
 | palo | compás | mode |
 |---|---|---|
-| bulerías | 12 beats, fast | Phrygian / major |
-| soleá | 12 beats, slow | Phrygian |
-| alegrías | 12 beats | major |
-| siguiriya | 12 beats in an uneven 5-beat pattern | Phrygian |
+| bulerías | 12-Beat Compás, starts on 12, fast | Phrygian |
+| soleá | 12-Beat Compás, starts on 1, slow | Phrygian |
+| alegrías | 12-Beat Compás, starts on 1, fast | major |
+| siguiriya | 12-Beat Compás, starts on 8 | Phrygian |
 | tangos | 4 beats | Phrygian |
-| fandango | 3 beats or free | Phrygian + major |
+| fandango | 3 beats or free | Phrygian |
 
 This is hard for a model because bulerías, soleá and alegrías share the same
 accent pattern (3, 6, 8, 10, 12), and siguiriya uses the same accents in a different order.
@@ -78,8 +75,7 @@ track score = mean of the window probabilities
 
 ## Data
 
-A private collection of flamenco recordings (commercial CDs). The audio, the
-track list and the labels are **not** published. Only the code and this summary are.
+A private collection of flamenco recordings. 
 
 | palo | train | validation | test |
 |---|---|---|---|
@@ -94,8 +90,6 @@ track list and the labels are **not** published. Only the code and this summary 
 | hours | 29.0 | 5.2 | 4.3 |
 
 ## Method decisions
-
-The parts I would point a reviewer to:
 
 - **Split by album** (`make_split.py`). An album is never in two sets. Otherwise the
   model can recognise a singer or a studio sound and not the palo. The split is
@@ -135,11 +129,9 @@ The parts I would point a reviewer to:
 ## Limitations
 
 - Only 6 palos. Every input gets one of them, also a sevillana or a taranta.
-- Mostly cante with guitar from commercial recordings. Phone recordings, solo guitar
+- Mostly cante with guitar from recordings. Phone recordings, solo guitar
   and palmas-only audio are outside the training distribution.
 - The test set is small (74 tracks, 9 albums), so the scores have wide error bars.
-- The model weights are not public, because the training audio is copyrighted.
-  You can use the model in the demo.
 
 ## Usage
 
