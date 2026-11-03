@@ -6,9 +6,6 @@ form of the song, characterized by a specific compás (meter),tonality, melody a
 **Demo:** [Flamenco Palo Detector on Hugging Face Spaces](https://huggingface.co/spaces/huggingddddd/flamenco-palo-detector) · **Model:** fine-tuned
 [MERT-v1-95M](https://huggingface.co/m-a-p/MERT-v1-95M)
 
-
-_(screenshot of the app: docs/app.png)_
-
 ## The task
 
 Six palos, which differ in compás, tonality, and character:
