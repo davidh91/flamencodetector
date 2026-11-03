@@ -36,7 +36,10 @@ class Predictor:
     """Loads the model once; call predict() for each file."""
 
     def __init__(self, model_dir: str):
-        self.device = "mps" if torch.backends.mps.is_available() else "cpu"
+        if torch.cuda.is_available():  # also on a ZeroGPU Space
+            self.device = "cuda"
+        else:
+            self.device = "mps" if torch.backends.mps.is_available() else "cpu"
         model, self.extractor = load_model(model_dir)
         self.model = model.to(self.device).eval()
         self.rate = self.extractor.sampling_rate
@@ -53,10 +56,18 @@ class Predictor:
             starts, windows = starts[loud], windows[loud]
         return starts / self.rate, windows
 
-    def predict(self, path: str) -> Prediction:
+    def read(self, path: str) -> np.ndarray:
+        """int16 mono samples at the model's sample rate; ValueError if ffmpeg cannot decode the file."""
         pcm, error = read_pcm(path, self.rate)
         if error:
             raise ValueError(f"cannot decode {path}: {error}")
+        return pcm
+
+    def predict(self, path: str) -> Prediction:
+        return self.predict_samples(self.read(path))
+
+    def predict_samples(self, pcm: np.ndarray) -> Prediction:
+        """The model part of predict(): the app runs only this part on the GPU."""
         times, windows = self.windows(pcm.astype(np.float32) / 32768)
 
         probs = []
