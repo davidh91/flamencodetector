@@ -1,0 +1,20 @@
+[project]
+name = "flamenco"
+version = "0.1.0"
+description = "Detect the flamenco palo (bulerías, soleá, ...) in audio with a fine-tuned MERT model"
+requires-python = ">=3.12"
+# Pinned versions: requirements.txt
+
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["flamenco"]
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B"]
+ignore = ["B905"]  # zip(strict=): our zips pair lists of equal length by construction

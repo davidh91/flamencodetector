@@ -1,0 +1,24 @@
+# Private: the audio collection, everything derived from it, and the trained models.
+# Only code goes on GitHub (see the README for the data summary).
+data/
+models/
+*.mp3
+*.m4a
+*.wav
+*.flac
+*.npy
+*.safetensors
+*.log
+
+# Python and tools
+.venv/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.gradio/
+.DS_Store
+
+# Private: collection-specific scripts and notes (see private/RUN.md)
+private/
+CLAUDE.local.md
