@@ -173,5 +173,6 @@ tools/windows/  helpers to repair file names on an exFAT drive
 
 ## License
 
-[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) (non-commercial), for the code
-and the model. The model is based on MERT-v1-95M, which has the same license.
+- **Code:** [MIT](LICENSE).
+- **Model:** [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) (non-commercial), the
+  license of the base model MERT-v1-95M.
